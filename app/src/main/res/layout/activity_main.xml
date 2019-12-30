@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <com.connect.base.ui.CustomViewPager
+        android:id="@+id/cvp_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"></com.connect.base.ui.CustomViewPager>
+
+
+    <com.connect.combine.ui.BottomBarLayout
+        android:id="@+id/bbl_home"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.connect.combine.ui.BottomBarItem
+            style="@style/home_icon_style"
+            app:iconNormal="@mipmap/icon_shouye_unselect"
+            app:iconSelected="@mipmap/icon_shouye"
+            app:itemText="@string/shou_ye"
+            app:textColorNormal="@color/tab_normal_color"
+            app:textColorSelected="@color/tab_selected_color"></com.connect.combine.ui.BottomBarItem>
+
+        <com.connect.combine.ui.BottomBarItem
+            style="@style/home_icon_style"
+            app:iconNormal="@mipmap/icon_kuangyouquan_unselect"
+            app:iconSelected="@mipmap/icon_kuangyouquan"
+            app:itemText="@string/kuang_you_quan"
+            app:textColorNormal="@color/tab_normal_color"
+            app:textColorSelected="@color/tab_selected_color"></com.connect.combine.ui.BottomBarItem>
+
+        <com.connect.combine.ui.BottomBarItem
+            style="@style/home_icon_style"
+            app:iconNormal="@mipmap/icon_qianbao_unselect"
+            app:iconSelected="@mipmap/icon_qianbao"
+            app:itemText="@string/qian_bao"
+            app:textColorNormal="@color/tab_normal_color"
+            app:textColorSelected="@color/tab_selected_color"></com.connect.combine.ui.BottomBarItem>
+    </com.connect.combine.ui.BottomBarLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

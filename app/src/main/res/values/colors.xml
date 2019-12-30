@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="bbl_ff0000">#ff0000</color>
+    <color name="bbl_999999">#999999</color>
+    <color name="white">#ffffff</color>
+    <color name="selector_grey">#DDDDDD</color>
+    <color name="tab_normal_color">#8F8F8F</color>
+    <color name="tab_selected_color">#3EB271</color>
+    <color name="commonTextColor">#28282b</color>
+    <color name="divider_color">#F7F7F7</color>
+    <color name="light_common_text">#8F8F8F</color>
+    <color name="light_orange">#22D78E00</color>
+    <color name="orange">#D78E00</color>
+    <color name="transp">#00ffffff</color>
+    <color name="green">#3EB271</color>
+    <color name="background">#FAFAFA</color>
+
+</resources>

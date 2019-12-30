@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".activity.GetMoneyActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/common_status_bar"></include>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp">
+            <FrameLayout
+                android:id="@+id/exit"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@mipmap/exit"></ImageView>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/suanli_tixian"></TextView>
+
+            <TextView
+                android:id="@+id/record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:text="@string/tixian_jilu"
+                android:textColor="@color/commonTextColor"
+                android:textSize="14sp"></TextView>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/abc_n_itiger"
+            android:textColor="@color/commonTextColor"
+            android:textSize="22dp"
+            android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="@string/tixian_zhi_jiaoyisuo"
+                android:textColor="@color/commonTextColor"
+                android:textSize="14dp"></TextView>
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:background="@color/white"
+                android:hint="@string/input_itiger"
+                android:textColor="@color/commonTextColor"
+                android:textColorHint="#cecece"
+                android:textSize="14dp"></EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/divider_color"></View>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/queren_zhanghu"
+                android:textColor="@color/commonTextColor"
+                android:textSize="14dp"></TextView>
+
+            <EditText
+                android:id="@+id/et_name_ensure"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:background="@color/white"
+                android:hint="@string/chongxin_shuru_zhanghu"
+                android:textColor="@color/commonTextColor"
+                android:textColorHint="#cecece"
+                android:textSize="14dp"></EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/divider_color"></View>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tixian_suanli"
+                android:textColor="@color/commonTextColor"
+                android:textSize="14dp"></TextView>
+
+            <EditText
+                android:id="@+id/et_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:background="@color/white"
+                android:hint="@string/qing_shuru_tixian_suanli"
+                android:textColor="@color/commonTextColor"
+                android:textColorHint="#cecece"
+                android:textSize="14dp"></EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/divider_color"></View>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/yuji_daozhang"
+                android:textColor="@color/commonTextColor"
+                android:textSize="14dp"></TextView>
+
+            <EditText
+                android:id="@+id/et_value_ensure"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:background="@color/white"
+                android:hint="@string/shuru_tixian_suanli"
+                android:textColor="@color/commonTextColor"
+                android:textColorHint="#cecece"
+                android:textSize="14dp"></EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/divider_color"></View>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_current_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/dangqian_bijia"
+            android:textColor="#458BF2"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dengli_mima"
+                android:textColor="@color/commonTextColor"
+                android:textSize="14dp"></TextView>
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp"
+                android:background="@color/white"
+                android:hint="@string/shuru_denglu_mima"
+                android:inputType="textPassword"
+                android:textColor="@color/commonTextColor"
+                android:textColorHint="#cecece"
+                android:textSize="14dp"></EditText>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/divider_color"></View>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/verify_code"
+                android:textSize="16sp"
+                android:textColor="@color/commonTextColor"
+                ></TextView>
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+                <EditText
+                    android:id="@+id/et_verify_code"
+                    android:inputType="number"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:textColor="@color/commonTextColor"
+                    android:hint="@string/input_verify_code"
+                    android:background="@drawable/shape_white"
+                    ></EditText>
+                <TextView
+                    android:id="@+id/tv_get_verify_code"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:textColor="#3EB271"
+                    android:text="@string/getVerifyCode"
+                    ></TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_tixian"
+            android:layout_width="195dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/shape_light_green_raduis_4"
+            android:gravity="center"
+            android:text="@string/tixian"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="15dp"
+                style="@style/light_common_12dp"
+                android:text="@string/zhuyi"></TextView>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                style="@style/light_common_12dp"
+                android:text="@string/tixian1"></TextView>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                style="@style/light_common_12dp"
+                android:text="@string/tixian2"></TextView>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                style="@style/light_common_12dp"
+                android:text="@string/tixian3"></TextView>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="@string/tixian4"
+                style="@style/light_common_12dp"></TextView>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical"
+                android:background="#fafafa"
+                >
+                <TextView
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    style="@style/common_12dp"
+                    android:text="@string/uid_huoqu"></TextView>
+                <TextView
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    style="@style/common_12dp"
+                    android:text="@string/uid_huoqu1"></TextView>
+                <TextView
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
+                    style="@style/common_12dp"
+                    android:text="@string/uid_huoqu2"></TextView>
+
+
+                <ImageView
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@mipmap/u476"
+                    ></ImageView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
