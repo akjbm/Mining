@@ -14,11 +14,12 @@ import com.connect.combine.R;
 import com.connect.combine.adapter.AnnouncementAdapter;
 import com.connect.combine.adapter.FriendAdapter;
 import com.connect.combine.adapter.InvestRecordAdapter;
+import com.connect.combine.adapter.RewardDetailAdapter;
 import com.connect.combine.adapter.TixianRecordAdapter;
-import com.connect.combine.bean.BannerResponseBean;
 import com.connect.combine.bean.FriendBean;
 import com.connect.combine.bean.InvestResponseBean;
 import com.connect.combine.bean.NewsResponseBean;
+import com.connect.combine.bean.RewardDetailBean;
 import com.connect.combine.bean.TiXianRecordBean;
 import com.connect.combine.callback.JsonCallback;
 import com.connect.combine.constant.HttpConstant;
@@ -62,9 +63,9 @@ public class TitleRecycleViewActivity extends BasicActivity {
             tvTitle.setText(getString(R.string.gonggao_zhongxin));
             List<NewsResponseBean.DataBean.RawsBean> contents = new Gson().fromJson(date, type);
             AnnouncementAdapter announcementAdapter = new AnnouncementAdapter(R.layout.item_anno_layout, contents);
-            rcvContent.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL,false));
+            rcvContent.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL, false));
             rcvContent.setAdapter(announcementAdapter);
-        }else  if(mode==1){
+        } else if (mode == 1) {
             String date = intent.getStringExtra("data");
             llRecyclerViewTitle.setVisibility(View.VISIBLE);
             Type type = new TypeToken<FriendBean.DataBean.DescendantBean>() {
@@ -72,44 +73,40 @@ public class TitleRecycleViewActivity extends BasicActivity {
             List<FriendBean.DataBean.DescendantBean> contents = new Gson().fromJson(date, type);
             tvTitle.setText(getString(R.string.wode_kuangyou));
             FriendAdapter friendAdapter = new FriendAdapter(R.layout.item_friend_layout, contents);
-            rcvContent.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL,false));
+            rcvContent.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL, false));
             rcvContent.setAdapter(friendAdapter);
 
-        }else if(mode==2){
+        } else if (mode == 2) {
             tvTitle.setText(getString(R.string.tixian_jilu));
             llRecyclerViewTitle.setVisibility(View.GONE);
             OkGo.<TiXianRecordBean>get(HttpConstant.Ti_xian_Record).execute(new JsonCallback<TiXianRecordBean>() {
                 @Override
                 public void onSuccess(Response<TiXianRecordBean> response) {
                     TiXianRecordBean body = response.body();
-                    if(body!=null&&body.getData()!=null)
-                    {
+                    if (body != null && body.getData() != null) {
                         TiXianRecordBean.DataBean data = body.getData();
                         List<TiXianRecordBean.DataBean.WithdrawBean> withdraw = data.getWithdraw();
                         TixianRecordAdapter tixianRecordAdapter = new TixianRecordAdapter(R.layout.item_tixian_record_layout, withdraw);
-                        rcvContent.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL,false));
+                        rcvContent.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL, false));
                         rcvContent.setAdapter(tixianRecordAdapter);
                     }
                 }
             });
 
 
-        }else if(mode==3)
-        {
+        } else if (mode == 3) {
             tvTitle.setText(getString(R.string.chongzhi_jilu));
             llRecyclerViewTitle.setVisibility(View.GONE);
             OkGo.<InvestResponseBean>get(HttpConstant.Invest).execute(new JsonCallback<InvestResponseBean>() {
                 @Override
                 public void onSuccess(Response<InvestResponseBean> response) {
                     InvestResponseBean body = response.body();
-                    if(body!=null&&body.getCode()==0)
-                    {
+                    if (body != null && body.getCode() == 0) {
                         InvestResponseBean.DataBean data = body.getData();
-                        if(data!=null)
-                        {
+                        if (data != null) {
                             List<InvestResponseBean.DataBean.InvestBean> invest = data.getInvest();
                             InvestRecordAdapter investRecordAdapter = new InvestRecordAdapter(R.layout.item_chongzhi_layout, invest);
-                            rcvContent.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL,false));
+                            rcvContent.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL, false));
                             rcvContent.setAdapter(investRecordAdapter);
                         }
 
@@ -118,6 +115,24 @@ public class TitleRecycleViewActivity extends BasicActivity {
             });
 
 
+        } else if (mode == 4) {
+            tvTitle.setText(getString(R.string.wakuang_shouyi_jilu));
+            OkGo.<RewardDetailBean>get(HttpConstant.Reward).execute(new JsonCallback<RewardDetailBean>() {
+                @Override
+                public void onSuccess(Response<RewardDetailBean> response) {
+                    RewardDetailBean body = response.body();
+                    if (body != null && body.getCode() == 0) {
+                        RewardDetailBean.DataBean data = body.getData();
+
+                        if (data != null && data.getReward() != null) {
+                            List<RewardDetailBean.DataBean.RewardBean> reward = data.getReward();
+                            RewardDetailAdapter rewardDetailAdapter = new RewardDetailAdapter(R.layout.item_reward_layout, reward);
+                            rcvContent.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL, false));
+                            rcvContent.setAdapter(rewardDetailAdapter);
+                        }
+                    }
+                }
+            });
         }
 
     }

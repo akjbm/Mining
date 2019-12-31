@@ -29,7 +29,7 @@
     <string name="enter_password">Please enter the password</string>
     <string name="ji_zhu_mima">Forget password</string>
     <string name="li_ji_zhuce">Signing</string>
-    <string name="suanli_tixian">HASHRATE withdraw</string>
+    <string name="suanli_tixian">Withdraw</string>
     <string name="abc_n_itiger">Withdraw HASHRATE to UMI depending on the current price</string>
     <string name="tixian_zhi_jiaoyisuo">Withdraw to iTiger.io exchange, please enter iTiger account UID	</string>
     <string name="input_itiger">Please enter the iTiger.io account UID</string>
@@ -113,4 +113,5 @@
     <string name="jiaoyi_haxi">交易哈希</string>
     <string name="tixian_chenggong">提现成功</string>
     <string name="huodong_guize">Mining Friends Activity Rules</string>
+    <string name="wakuang_shouyi_jilu">Reward Detail</string>
 </resources>

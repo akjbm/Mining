@@ -8,7 +8,7 @@ public class AppConstant {
     public static final String IS_LOGIN = "IS_LOGIN";
     public static final String PHONE = "PHONE";
     public static final String PASSWORD = "PASSWORD";
-    public static String HttpHost="http://47.94.143.106:8125";
+    public static String HttpHost = "http://18.191.63.158:8125";
     public static String InviteCode="";
     public static Context GLOBAL_CONTEXT;
     public static int CURRENT_LANGUAGE=1;

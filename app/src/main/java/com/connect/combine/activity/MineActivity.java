@@ -48,6 +48,12 @@ public class MineActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mine);
         ButterKnife.bind(this);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         OkGo.<UserInfoBackBean>get(HttpConstant.UserInfo).execute(new JsonCallback<UserInfoBackBean>() {
             @Override
             public void onSuccess(Response<UserInfoBackBean> response) {
@@ -70,7 +76,9 @@ public class MineActivity extends BasicActivity {
                 finish();
                 break;
             case R.id.rl_name:
-                startActivity(new Intent(AppConstant.GLOBAL_CONTEXT, ReplaceNameActivity.class));
+                Intent intent = new Intent(AppConstant.GLOBAL_CONTEXT, ReplaceNameActivity.class);
+                intent.putExtra("name", tvName.getText().toString());
+                startActivity(intent);
                 break;
             case R.id.exit_login:
                 OkGo.<BaseBean>get(HttpConstant.Logout).execute(new JsonCallback<BaseBean>() {

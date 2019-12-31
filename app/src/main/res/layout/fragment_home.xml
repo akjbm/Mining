@@ -159,7 +159,7 @@
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="13人"
+                        android:text=""
                         android:textColor="@color/commonTextColor"
                         android:textSize="13sp"></TextView>
                     <TextView
@@ -191,7 +191,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/commonTextColor"
-                        android:text="13人"
+                        android:text=""
                         android:textSize="13sp"
                         ></TextView>
 
@@ -223,7 +223,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/commonTextColor"
-                        android:text="150算力"
+                        android:text=""
                         android:textSize="13sp"
                         ></TextView>
                     <TextView
@@ -269,11 +269,12 @@
                 android:textColor="@color/light_common_text"
                 ></TextView>
             <TextView
+                android:id="@+id/tv_today_sell"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="101,230,000 算力"
+                android:text="0 算力"
                 android:textSize="22dp"
                 android:textStyle="bold"
                 android:textColor="@color/commonTextColor"
@@ -297,11 +298,12 @@
                 android:textColor="@color/light_common_text"
                 ></TextView>
             <TextView
+                android:id="@+id/tv_today_value"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="101,230 算力"
+                android:text="0 算力"
                 android:textSize="22dp"
                 android:textStyle="bold"
                 android:textColor="@color/commonTextColor"

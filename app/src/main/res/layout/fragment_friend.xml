@@ -215,6 +215,7 @@
                 android:gravity="center"
                 >
                 <TextView
+                    android:id="@+id/tv_total_hash"
                     android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -232,6 +233,7 @@
                     ></TextView>
             </LinearLayout>
             <TextView
+                android:id="@+id/tv_countdown_time"
                 android:textStyle="bold"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"

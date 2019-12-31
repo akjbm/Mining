@@ -15,6 +15,7 @@ import com.connect.base.BaseFragment;
 import com.connect.combine.R;
 import com.connect.combine.activity.BuyMeachineActivity;
 import com.connect.combine.activity.GetMoneyActivity;
+import com.connect.combine.activity.TitleRecycleViewActivity;
 import com.connect.combine.bean.UserInfoBackBean;
 import com.connect.combine.constant.AppConstant;
 
@@ -59,6 +60,9 @@ public class WalleFragment extends BaseFragment {
                 startActivity(new Intent(AppConstant.GLOBAL_CONTEXT, BuyMeachineActivity.class));
                 break;
             case R.id.tv_detail:
+                Intent intent = new Intent(AppConstant.GLOBAL_CONTEXT, TitleRecycleViewActivity.class);
+                intent.putExtra("mode", 4);
+                startActivity(intent);
                 break;
         }
     }

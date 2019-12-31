@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.connect.base.utils.RegexUtils;
 import com.connect.base.utils.SPUtils;
 import com.connect.combine.R;
 import com.connect.combine.bean.BaseBean;
@@ -67,7 +66,7 @@ public class GetMoneyActivity extends BasicActivity {
         OkGo.<CurrentPriceResponseBean>get(HttpConstant.CurrentPrice).execute(new JsonCallback<CurrentPriceResponseBean>() {
             @Override
             public void onSuccess(Response<CurrentPriceResponseBean> response) {
-                price = response.body().getPrice();
+                price = response.body().getData();
                 currentPrice.setText(getString(R.string.dangqian_bijia, price));
             }
         });
@@ -99,7 +98,7 @@ public class GetMoneyActivity extends BasicActivity {
                     OkGo.<CurrentPriceResponseBean>get(HttpConstant.CurrentPrice).execute(new JsonCallback<CurrentPriceResponseBean>() {
                         @Override
                         public void onSuccess(Response<CurrentPriceResponseBean> response) {
-                            price = response.body().getPrice();
+                            price = response.body().getData();
                             currentPrice.setText(getString(R.string.dangqian_bijia, price));
 
                         }

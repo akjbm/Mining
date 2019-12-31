@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:src="@mipmap/tixian"></ImageView>
+            android:src="@mipmap/ic_launcher_round"></ImageView>
 
         <LinearLayout
             android:layout_marginLeft="11dp"

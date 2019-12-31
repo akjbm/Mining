@@ -22,6 +22,7 @@ import com.connect.combine.activity.InviteFriendActivity;
 import com.connect.combine.activity.TitleRecycleViewActivity;
 import com.connect.combine.activity.WebViewActivity;
 import com.connect.combine.bean.FriendBean;
+import com.connect.combine.bean.MinePoolResponseBean;
 import com.connect.combine.bean.UserInfoBackBean;
 import com.connect.combine.callback.JsonCallback;
 import com.connect.combine.constant.AppConstant;
@@ -53,6 +54,10 @@ public class FriendFragment extends BaseFragment {
     TextView tvTotalInvest;
     @BindView(R.id.tv_total_profit)
     TextView tvTotalProfit;
+    @BindView(R.id.tv_total_hash)
+    TextView tvTotalHash;
+    @BindView(R.id.tv_countdown_time)
+    TextView tvCountdownTime;
     private FriendBean.DataBean data;
 
     @Nullable
@@ -80,6 +85,34 @@ public class FriendFragment extends BaseFragment {
                 }
             }
         });
+
+        OkGo.<MinePoolResponseBean>get(HttpConstant.MinePool).execute(new JsonCallback<MinePoolResponseBean>() {
+            @Override
+            public void onSuccess(Response<MinePoolResponseBean> response) {
+                MinePoolResponseBean body = response.body();
+                if (body != null && body.getData() != null) {
+                    MinePoolResponseBean.DataBean data = body.getData();
+                    int time = data.getTime();
+                    String total = data.getTotal();
+                    tvTotalHash.setText(total);
+                    int day = time / 86400;
+                    int hour = (time - 86400 * day) / 3600;
+                    int minutes = (time - 86400 * day - 3600 * hour) / 60;
+                    String finalTime = "";
+                    if (day != 0) {
+                        finalTime = finalTime + day + "天";
+                    }
+                    if (hour != 0) {
+                        finalTime = finalTime + hour + "小时";
+                    }
+                    if (minutes != 0) {
+                        finalTime = finalTime + minutes + "分钟";
+                    }
+
+                    tvCountdownTime.setText(finalTime);
+                }
+            }
+        });
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -97,15 +130,15 @@ public class FriendFragment extends BaseFragment {
         } else {
             tvTotalInvest.setText(descendant_cnt + "人");
         }
-        String value=TextUtils.isEmpty(event.getMy_reward())?"0":event.getMy_reward();
-        tvTotalProfit.setText(value+getString(R.string.suanli));
+        String value = TextUtils.isEmpty(event.getMy_reward()) ? "0" : event.getMy_reward();
+        tvTotalProfit.setText(value + getString(R.string.suanli));
     }
 
     @OnClick({R.id.tv_rules, R.id.tv_invite, R.id.tv_friends})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_rules:
-                startActivity(new Intent(AppConstant.GLOBAL_CONTEXT,WebViewActivity.class));
+                startActivity(new Intent(AppConstant.GLOBAL_CONTEXT, WebViewActivity.class));
                 break;
             case R.id.tv_invite:
                 startActivity(new Intent(AppConstant.GLOBAL_CONTEXT, InviteFriendActivity.class));

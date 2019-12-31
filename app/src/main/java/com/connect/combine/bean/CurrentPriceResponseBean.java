@@ -2,47 +2,38 @@ package com.connect.combine.bean;
 
 public class CurrentPriceResponseBean {
 
+
     /**
-     * price : 0.02184
-     * time : 1577698207904
-     * qty : 288.61
-     * isBuyerMaker : false
+     * code : 0
+     * msg :
+     * data : 0.01808
      */
 
-    private String price;
-    private long time;
-    private String qty;
-    private boolean isBuyerMaker;
+    private int code;
+    private String msg;
+    private String data;
 
-    public String getPrice() {
-        return price;
+    public int getCode() {
+        return code;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public long getTime() {
-        return time;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    public String getQty() {
-        return qty;
+    public String getData() {
+        return data;
     }
 
-    public void setQty(String qty) {
-        this.qty = qty;
-    }
-
-    public boolean isIsBuyerMaker() {
-        return isBuyerMaker;
-    }
-
-    public void setIsBuyerMaker(boolean isBuyerMaker) {
-        this.isBuyerMaker = isBuyerMaker;
+    public void setData(String data) {
+        this.data = data;
     }
 }

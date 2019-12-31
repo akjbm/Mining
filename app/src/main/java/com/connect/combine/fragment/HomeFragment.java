@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Process;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +32,7 @@ import com.connect.combine.activity.MyMeachineActivity;
 import com.connect.combine.activity.TitleRecycleViewActivity;
 import com.connect.combine.bean.BannerResponseBean;
 import com.connect.combine.bean.BaseBean;
+import com.connect.combine.bean.DayInfoResponseBean;
 import com.connect.combine.bean.NewsResponseBean;
 import com.connect.combine.bean.RegisterBean;
 import com.connect.combine.bean.UserInfoBackBean;
@@ -45,8 +44,6 @@ import com.connect.combine.utils.GlideImageLoader;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
-import com.orhanobut.dialogplus.DialogPlus;
-import com.orhanobut.dialogplus.ViewHolder;
 import com.sunfusheng.marqueeview.MarqueeView;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
@@ -54,7 +51,6 @@ import com.youth.banner.listener.OnBannerListener;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -91,6 +87,10 @@ public class HomeFragment extends BaseFragment {
     TextView tv_total_output;
     @BindView(R.id.tv_today_output)
     TextView tvTodayOutput;
+    @BindView(R.id.tv_today_sell)
+    TextView tvTodaySell;
+    @BindView(R.id.tv_today_value)
+    TextView tvTodayValue;
 
     @Nullable
     @Override
@@ -99,15 +99,13 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         int statusBarHeight = BarUtils.getStatusBarHeight(getContext());
         view.findViewById(R.id.status_bar).setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, statusBarHeight));
-        DialogPlus dialogPlus = DialogPlus.newDialog(getContext()).setContentHolder(new ViewHolder(R.layout.hongbao_layout)).setContentBackgroundResource(R.color.transp).setGravity(Gravity.CENTER).create();
-        dialogPlus.show();
+//        DialogPlus dialogPlus = DialogPlus.newDialog(getContext()).setContentHolder(new ViewHolder(R.layout.hongbao_layout)).setContentBackgroundResource(R.color.transp).setGravity(Gravity.CENTER).create();
+//        dialogPlus.show();
         SPUtils spUtils = new SPUtils(AppConstant.GLOBAL_CONTEXT, AppConstant.SP);
         String string = spUtils.getString("Language", "en");
-        if(string.equals("en"))
-        {
+        if (string.equals("en")) {
             iv_language.setImageResource(R.mipmap.en);
-        }else
-        {
+        } else {
             iv_language.setImageResource(R.mipmap.zh);
         }
 
@@ -153,19 +151,17 @@ public class HomeFragment extends BaseFragment {
                                     AppConstant.InviteCode = body.getData().getUser().getInvite_code();
                                     UserInfoBackBean.DataBean.WalletBean wallet = body.getData().getWallet();
                                     EventBus.getDefault().post(wallet);
-                                    String value=TextUtils.isEmpty(wallet.getMy_power())?"0":wallet.getMy_power();
-                                    tv_suanli.setText(value+getString(R.string.suanli));
+                                    String value = TextUtils.isEmpty(wallet.getMy_power()) ? "0" : wallet.getMy_power();
+                                    tv_suanli.setText(value + getString(R.string.suanli));
                                     try {
-                                        tv_total_output.setText(Integer.parseInt(wallet.getMy_output()) +getString(R.string.suanli));
-                                    }catch (NumberFormatException e)
-                                    {
-                                        tv_total_output.setText("0"+getString(R.string.suanli));
+                                        tv_total_output.setText(Integer.parseInt(wallet.getMy_output()) + getString(R.string.suanli));
+                                    } catch (NumberFormatException e) {
+                                        tv_total_output.setText("0" + getString(R.string.suanli));
                                     }
                                     try {
-                                        tv_total_output.setText(Integer.parseInt(wallet.getToday_output()) +getString(R.string.suanli));
-                                    }catch (NumberFormatException e)
-                                    {
-                                        tv_total_output.setText("0"+getString(R.string.suanli));
+                                        tvTodayOutput.setText(Integer.parseInt(wallet.getToday_output()) + getString(R.string.suanli));
+                                    } catch (NumberFormatException e) {
+                                        tvTodayOutput.setText("0" + getString(R.string.suanli));
                                     }
 
                                 }
@@ -224,8 +220,30 @@ public class HomeFragment extends BaseFragment {
                 });
             }
         });
-    }
 
+
+        OkGo.<DayInfoResponseBean>get(HttpConstant.DayInfo).execute(new JsonCallback<DayInfoResponseBean>() {
+            @Override
+            public void onSuccess(Response<DayInfoResponseBean> response) {
+                DayInfoResponseBean body = response.body();
+                if (body != null && body.getCode() == 0) {
+                    DayInfoResponseBean.DataBean data = body.getData();
+                    if (data != null) {
+                        String dayInvest = data.getDayInvest();
+                        if (TextUtils.isEmpty(dayInvest)) {
+                            dayInvest = "0";
+                        }
+                        tvTodaySell.setText(dayInvest + " " + getString(R.string.suanli));
+                        String dayReward = data.getDayReward();
+                        if (TextUtils.isEmpty(dayReward)) {
+                            dayReward = "0";
+                        }
+                        tvTodayValue.setText(dayReward + " " + getString(R.string.suanli));
+                    }
+                }
+            }
+        });
+    }
 
 
     @Override
@@ -241,7 +259,7 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.iv_me, R.id.ll_gonggao, R.id.tv_meachine_details, R.id.tv_buy_meachine,R.id.ll_switch})
+    @OnClick({R.id.iv_me, R.id.ll_gonggao, R.id.tv_meachine_details, R.id.tv_buy_meachine, R.id.ll_switch})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.iv_me:
@@ -268,9 +286,8 @@ public class HomeFragment extends BaseFragment {
                     @Override
                     public void onClick(View v) {
                         SPUtils spUtils = new SPUtils(AppConstant.GLOBAL_CONTEXT, AppConstant.SP);
-                        String sta= spUtils.getString("Language", "zh");
-                        if("zh".equals(sta))
-                        {
+                        String sta = spUtils.getString("Language", "zh");
+                        if ("zh".equals(sta)) {
                             Locale myLocale = new Locale("en");
                             Resources res = getResources();
                             DisplayMetrics dm = res.getDisplayMetrics();
@@ -281,7 +298,7 @@ public class HomeFragment extends BaseFragment {
                             Intent intent = new Intent(AppConstant.GLOBAL_CONTEXT, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             getActivity().startActivity(intent);
-                            AppConstant.CURRENT_LANGUAGE=1;
+                            AppConstant.CURRENT_LANGUAGE = 1;
 
                         }
                     }
@@ -290,9 +307,8 @@ public class HomeFragment extends BaseFragment {
                     @Override
                     public void onClick(View v) {
                         SPUtils spUtils = new SPUtils(AppConstant.GLOBAL_CONTEXT, AppConstant.SP);
-                        String sta= spUtils.getString("Language", "zh");
-                        if("en".equals(sta))
-                        {
+                        String sta = spUtils.getString("Language", "zh");
+                        if ("en".equals(sta)) {
                             Locale myLocale = new Locale("zh");
                             Resources res = getResources();
                             DisplayMetrics dm = res.getDisplayMetrics();
@@ -303,7 +319,7 @@ public class HomeFragment extends BaseFragment {
                             Intent intent = new Intent(AppConstant.GLOBAL_CONTEXT, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             getActivity().startActivity(intent);
-                            AppConstant.CURRENT_LANGUAGE=0;
+                            AppConstant.CURRENT_LANGUAGE = 0;
                         }
                     }
                 });
@@ -321,10 +337,11 @@ public class HomeFragment extends BaseFragment {
 
 
     }
+
     public void changeAppLanguage() {
         //这是SharedPreferences工具类，用于保存设置，代码很简单，自己实现吧
         SPUtils spUtils = new SPUtils(AppConstant.GLOBAL_CONTEXT, AppConstant.SP);
-        String sta= spUtils.getString("Language", "zh");
+        String sta = spUtils.getString("Language", "zh");
         Locale myLocale = new Locale(sta);
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
