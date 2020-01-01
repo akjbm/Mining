@@ -79,8 +79,8 @@
     <string name="finish">Confirm</string>
     <string name="kuangzhuchi">Mine Owners Dividend Pool</string>
     <string name="daojishi">Giveout Countdown</string>
-    <string name="kuangzhu_bang">Mine Owners Ranking List</string>
-    <string name="gongyou_kuangzhu">There are %s mine owners currently.</string>
+    <string name="kuangzhu_bang">Mine Rank List</string>
+    <string name="gongyou_kuangzhu">There are %s mine owners.</string>
     <string name="yaoqing_kuangyou">Invite</string>
     <string name="wode_kuangyou">My mining friends</string>
     <string name="guize">Rules</string>
@@ -108,10 +108,15 @@
     <string name="_1_100_usdt">1.Minimum recharge amount: 100 USDT </string>
     <string name="_2_usdt_erc20_usdt_usdt_usdt">2.It is forbidden to recharge USDT address except Erc20 USDT assets,any other version of USDT recharged to this address will not be recovered	</string>
     <string name="fuzhi_chenggong">Copy Success</string>
-    <string name="buy_meachine">购买矿机</string>
-    <string name="jiaoyi_shijian">交易时间</string>
-    <string name="jiaoyi_haxi">交易哈希</string>
-    <string name="tixian_chenggong">提现成功</string>
+    <string name="buy_meachine">Buy Meachine</string>
+    <string name="jiaoyi_shijian">Transaction time</string>
+    <string name="jiaoyi_haxi">Transaction hash</string>
+    <string name="tixian_chenggong">Completed</string>
     <string name="huodong_guize">Mining Friends Activity Rules</string>
     <string name="wakuang_shouyi_jilu">Reward Detail</string>
+    <string name="kuangzhubang">Mine Owners Ranking List</string>
+    <string name="ni_cheng">Name</string>
+    <string name="zhanghao">Account</string>
+    <string name="wo">me</string>
+    <string name="suanli_1u">1HASHRATE=1U</string>
 </resources>

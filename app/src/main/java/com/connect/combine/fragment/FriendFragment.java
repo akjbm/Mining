@@ -19,6 +19,7 @@ import com.connect.base.BaseFragment;
 import com.connect.base.utils.BarUtils;
 import com.connect.combine.R;
 import com.connect.combine.activity.InviteFriendActivity;
+import com.connect.combine.activity.RankListActivity;
 import com.connect.combine.activity.TitleRecycleViewActivity;
 import com.connect.combine.activity.WebViewActivity;
 import com.connect.combine.bean.FriendBean;
@@ -58,6 +59,10 @@ public class FriendFragment extends BaseFragment {
     TextView tvTotalHash;
     @BindView(R.id.tv_countdown_time)
     TextView tvCountdownTime;
+    @BindView(R.id.tv_mine_number)
+    TextView tvMineNumber;
+    @BindView(R.id.tv_rank_list)
+    TextView tvRankList;
     private FriendBean.DataBean data;
 
     @Nullable
@@ -110,6 +115,8 @@ public class FriendFragment extends BaseFragment {
                     }
 
                     tvCountdownTime.setText(finalTime);
+                    tvMineNumber.setText(getString(R.string.gongyou_kuangzhu, data.getNodeCnt() + ""));
+
                 }
             }
         });
@@ -134,7 +141,7 @@ public class FriendFragment extends BaseFragment {
         tvTotalProfit.setText(value + getString(R.string.suanli));
     }
 
-    @OnClick({R.id.tv_rules, R.id.tv_invite, R.id.tv_friends})
+    @OnClick({R.id.tv_rules, R.id.tv_invite, R.id.tv_friends, R.id.tv_rank_list})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_rules:
@@ -153,6 +160,9 @@ public class FriendFragment extends BaseFragment {
                 } else {
                     startActivity(intent);
                 }
+                break;
+            case R.id.tv_rank_list:
+                startActivity(new Intent(AppConstant.GLOBAL_CONTEXT, RankListActivity.class));
                 break;
         }
     }

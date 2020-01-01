@@ -6,18 +6,14 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.connect.base.utils.ClipboardUtils;
-import com.connect.base.utils.ScreenUtils;
 import com.connect.base.utils.SizeUtils;
 import com.connect.combine.R;
-import com.connect.combine.bean.BaseBean;
 import com.connect.combine.bean.UserInfoBackBean;
 import com.connect.combine.callback.JsonCallback;
 import com.connect.combine.constant.AppConstant;
@@ -26,10 +22,6 @@ import com.connect.combine.utils.BitmapUtils;
 import com.github.yoojia.qrcode.qrcode.QRCodeEncoder;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.model.Response;
-
-import org.greenrobot.eventbus.EventBus;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,17 +60,29 @@ public class ChongZhiActivity extends BasicActivity {
                     String phone = body.getData().getUser().getPhone();
                     String name = body.getData().getUser().getName();
                     AppConstant.InviteCode = body.getData().getUser().getInvite_code();
-                    UserInfoBackBean.DataBean.InvestAddrBean investAddr = body.getData().getInvestAddr();
-                    String addr = investAddr.getAddr();
-                    Bitmap qrCodeImage = new QRCodeEncoder.Builder()
-                            .width(SizeUtils.dp2px(AppConstant.GLOBAL_CONTEXT, 155)) // 二维码图案的宽度
-                            .height(SizeUtils.dp2px(AppConstant.GLOBAL_CONTEXT, 155))
-                            .paddingPx(0) // 二维码的内边距
-                            .marginPt(3) // 二维码的外边距
-                            .build()
-                            .encode(addr);
-                    tvInfo.setText(addr);
-                    ivQrcode.setImageBitmap(qrCodeImage);
+                    try {
+                        UserInfoBackBean.DataBean.InvestAddrBean investAddr = body.getData().getInvestAddr();
+                        String addr = investAddr.getAddr();
+                        Bitmap qrCodeImage = new QRCodeEncoder.Builder()
+                                .width(SizeUtils.dp2px(AppConstant.GLOBAL_CONTEXT, 155)) // 二维码图案的宽度
+                                .height(SizeUtils.dp2px(AppConstant.GLOBAL_CONTEXT, 155))
+                                .paddingPx(0) // 二维码的内边距
+                                .marginPt(3) // 二维码的外边距
+                                .build()
+                                .encode(addr);
+                        tvInfo.setText(addr);
+                        ivQrcode.setImageBitmap(qrCodeImage);
+                    } catch (Exception e) {
+                        Bitmap qrCodeImage = new QRCodeEncoder.Builder()
+                                .width(SizeUtils.dp2px(AppConstant.GLOBAL_CONTEXT, 155)) // 二维码图案的宽度
+                                .height(SizeUtils.dp2px(AppConstant.GLOBAL_CONTEXT, 155))
+                                .paddingPx(0) // 二维码的内边距
+                                .marginPt(3) // 二维码的外边距
+                                .build()
+                                .encode("000000");
+                        tvInfo.setText("000000");
+                        ivQrcode.setImageBitmap(qrCodeImage);
+                    }
 
                 }
             }

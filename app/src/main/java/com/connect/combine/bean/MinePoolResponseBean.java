@@ -45,6 +45,15 @@ public class MinePoolResponseBean {
         private String total;
         private int time;
 
+        public int getNodeCnt() {
+            return nodeCnt;
+        }
+
+        public void setNodeCnt(int nodeCnt) {
+            this.nodeCnt = nodeCnt;
+        }
+
+        private int nodeCnt;
         public String getTotal() {
             return total;
         }

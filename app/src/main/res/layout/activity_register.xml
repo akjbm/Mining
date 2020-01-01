@@ -227,7 +227,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/shape_light_green"
+        android:background="@drawable/shape_trans_light_green_raduis_4"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:text="@string/register"

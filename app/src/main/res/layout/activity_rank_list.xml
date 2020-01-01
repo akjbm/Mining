@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_qianbao"
+    android:orientation="vertical"
+    tools:context=".activity.TitleRecycleViewActivity">
+
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="44dp">
+
+        <FrameLayout
+            android:id="@+id/fl_close"
+            android:layout_marginLeft="10dp"
+            android:layout_width="40dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="15dp"
+                app:srcCompat="@mipmap/return_white"
+                android:layout_gravity="center"></ImageView>
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/kuangzhubang"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            style="@style/title_style"></TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_RecyclerView_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/shape_white_radius_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="80dp"
+                android:layout_weight="1"
+                style="@style/light_common_12dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ni_cheng"></TextView>
+
+            <TextView
+                android:gravity="right"
+                android:layout_weight="1"
+                style="@style/light_common_12dp"
+                android:layout_marginTop="20dp"
+                android:paddingRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/zhanghao"></TextView>
+
+            <TextView
+                android:layout_weight="1"
+                style="@style/light_common_12dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/suanli"></TextView>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="5dp"
+            android:id="@+id/rcv_content"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="60dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="60dp"
+            android:background="@drawable/shape_orange_radius_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/light_common_12dp"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:layout_marginLeft="13dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wo"></TextView>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_marginLeft="34dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ABC"
+                style="@style/common_12dp"
+                android:textSize="14sp"></TextView>
+
+            <TextView
+                style="@style/common_12dp"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="距成为矿主还需"></TextView>
+
+            <TextView
+                android:id="@+id/tv_distance_suanli"
+                android:textColor="#D78E00"
+                android:textSize="18sp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000算力"></TextView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

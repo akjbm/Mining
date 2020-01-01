@@ -35,8 +35,8 @@ public class ReplaceNameActivity extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_replace_name);
         String name = getIntent().getStringExtra("name");
-        etName.setText(name);
         ButterKnife.bind(this);
+        etName.setText(name);
     }
 
     @OnClick({R.id.fl_close, R.id.tv_modify})

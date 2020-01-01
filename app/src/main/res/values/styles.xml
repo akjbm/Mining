@@ -37,6 +37,13 @@
         <item name="android:textSize">12dp</item>
         <item name="android:textColor">@color/commonTextColor</item>
     </style>
+
+    <style name="common_14dp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/commonTextColor</item>
+    </style>
     <style name="button">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">30dp</item>

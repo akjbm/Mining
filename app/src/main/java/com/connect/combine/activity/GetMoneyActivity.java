@@ -1,8 +1,11 @@
 package com.connect.combine.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -54,7 +57,7 @@ public class GetMoneyActivity extends BasicActivity {
     EditText etVerifyCode;
     @BindView(R.id.tv_get_verify_code)
     TextView tvGetVerifyCode;
-    private String price="0";
+    private String price = "0";
     private CountDownTimer countDownTimer;
 
 
@@ -70,9 +73,51 @@ public class GetMoneyActivity extends BasicActivity {
                 currentPrice.setText(getString(R.string.dangqian_bijia, price));
             }
         });
+        if (etName.getText().toString().length() > 0
+                && etPassword.getText().toString().length() > 0
+                && etValue.getText().toString().length() > 0
+                && etNameEnsure.getText().toString().length() > 0
+                && etValueEnsure.getText().toString().length() > 0
+                && etVerifyCode.getText().toString().length() > 0
+        ) {
+            tvTixian.setTextColor(Color.WHITE);
+            tvTixian.setBackgroundResource(R.drawable.shape_light_green_raduis_4);
+            tvTixian.setClickable(true);
+        } else {
+            tvTixian.setTextColor(0x77ffffff);
+            tvTixian.setBackgroundResource(R.drawable.shape_trans_light_green_raduis_4);
+            tvTixian.setClickable(false);
+        }
+
+        etVerifyCode.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (etVerifyCode.getText().toString().trim().length() != 0) {
+                    tvTixian.setTextColor(Color.WHITE);
+                    tvTixian.setBackgroundResource(R.drawable.shape_light_green_raduis_4);
+                    tvTixian.setClickable(true);
+                } else {
+                    tvTixian.setTextColor(0x77ffffff);
+                    tvTixian.setBackgroundResource(R.drawable.shape_trans_light_green_raduis_4);
+                    tvTixian.setClickable(false);
+
+                }
+            }
+        });
+
     }
 
-    @OnClick({R.id.exit, R.id.title, R.id.record, R.id.tv_tixian,R.id.tv_get_verify_code})
+    @OnClick({R.id.exit, R.id.title, R.id.record, R.id.tv_tixian, R.id.tv_get_verify_code})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.exit:
@@ -86,6 +131,16 @@ public class GetMoneyActivity extends BasicActivity {
                 startActivity(intent);
                 break;
             case R.id.tv_tixian:
+                if (!(etName.getText().toString().length() > 0
+                        || etPassword.getText().toString().length() > 0
+                        || etValue.getText().toString().length() > 0
+                        || etNameEnsure.getText().toString().length() > 0
+                        || etValueEnsure.getText().toString().length() > 0
+                        || etVerifyCode.getText().toString().length() > 0)
+                ) {
+                    showToast("输入为空");
+                    return;
+                }
                 if (!etName.getText().toString().trim().equals(etNameEnsure.getText().toString().trim())) {
                     showToast("两次输入的提现账户不一致");
                     return;
@@ -115,8 +170,10 @@ public class GetMoneyActivity extends BasicActivity {
                     @Override
                     public void onSuccess(Response<BaseBean> response) {
                         BaseBean body = response.body();
-                        if(body.getCode()==0){
+                        if (body.getCode() == 0) {
                             showToast(getString(R.string.tixian_chenggong));
+                        } else {
+                            showToast(response.body().getMsg());
                         }
                     }
                 });
@@ -138,7 +195,7 @@ public class GetMoneyActivity extends BasicActivity {
                 tvGetVerifyCode.setClickable(false);
                 countDownTimer.start();
                 SPUtils spUtils = new SPUtils(AppConstant.GLOBAL_CONTEXT, AppConstant.SP);
-                OkGo.<BaseBean>get(HttpConstant.reqVC).params("phone",spUtils.getString(AppConstant.PHONE) ).execute(new JsonCallback<BaseBean>() {
+                OkGo.<BaseBean>get(HttpConstant.reqVC).params("phone", spUtils.getString(AppConstant.PHONE)).execute(new JsonCallback<BaseBean>() {
                     @Override
                     public void onSuccess(Response<BaseBean> response) {
                         if (response.body().getCode() == 0) {

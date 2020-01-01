@@ -114,4 +114,9 @@
     <string name="tixian_chenggong">提现成功</string>
     <string name="huodong_guize">矿友活动规则</string>
     <string name="wakuang_shouyi_jilu">挖矿收益记录</string>
+    <string name="kuangzhubang">矿主榜</string>
+    <string name="ni_cheng">昵称</string>
+    <string name="zhanghao">账号</string>
+    <string name="wo">我</string>
+    <string name="suanli_1u">1算力=1U</string>
 </resources>
