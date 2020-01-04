@@ -90,7 +90,6 @@ public class FriendFragment extends BaseFragment {
                 }
             }
         });
-
         OkGo.<MinePoolResponseBean>get(HttpConstant.MinePool).execute(new JsonCallback<MinePoolResponseBean>() {
             @Override
             public void onSuccess(Response<MinePoolResponseBean> response) {
@@ -120,6 +119,18 @@ public class FriendFragment extends BaseFragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //OkGo.getInstance().cancelAll();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        //  OkGo.getInstance().cancelAll();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

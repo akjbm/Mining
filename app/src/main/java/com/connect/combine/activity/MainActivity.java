@@ -4,6 +4,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 
@@ -33,6 +34,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("onCreate", "onCreate");
         SPUtils spUtils = new SPUtils(AppConstant.GLOBAL_CONTEXT, AppConstant.SP);
         String sta = spUtils.getString("Language", "en");
         Locale myLocale = new Locale(sta);
@@ -55,4 +57,5 @@ public class MainActivity extends BaseActivity {
         bbl_home.setViewPager(cvp_home);
       //  startActivity(new Intent(this,LoginActivity.class));
     }
+
 }

@@ -99,8 +99,6 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         int statusBarHeight = BarUtils.getStatusBarHeight(getContext());
         view.findViewById(R.id.status_bar).setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, statusBarHeight));
-//        DialogPlus dialogPlus = DialogPlus.newDialog(getContext()).setContentHolder(new ViewHolder(R.layout.hongbao_layout)).setContentBackgroundResource(R.color.transp).setGravity(Gravity.CENTER).create();
-//        dialogPlus.show();
         SPUtils spUtils = new SPUtils(AppConstant.GLOBAL_CONTEXT, AppConstant.SP);
         String string = spUtils.getString("Language", "en");
         if (string.equals("en")) {
@@ -187,7 +185,7 @@ public class HomeFragment extends BaseFragment {
                     images.add(bean.getImage());
                     click.add(bean.getUrl());
                 }
-                banner.setImages(images).setImageLoader(new GlideImageLoader());
+                banner.setImages(images).setImageLoader(new GlideImageLoader(HomeFragment.this.getActivity()));
                 banner.setOnBannerListener(new OnBannerListener() {
                     @Override
                     public void OnBannerClick(int position) {
@@ -264,6 +262,8 @@ public class HomeFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.iv_me:
                 startActivity(new Intent(AppConstant.GLOBAL_CONTEXT, MineActivity.class));
+//                DialogPlus dialogPlus = DialogPlus.newDialog(getContext()).setContentHolder(new ViewHolder(R.layout.hongbao_layout)).setContentBackgroundResource(R.color.transp).setGravity(Gravity.CENTER).create();
+//                dialogPlus.show();
                 break;
             case R.id.ll_gonggao:
                 Intent intent = new Intent(AppConstant.GLOBAL_CONTEXT, TitleRecycleViewActivity.class);
@@ -286,7 +286,7 @@ public class HomeFragment extends BaseFragment {
                     @Override
                     public void onClick(View v) {
                         SPUtils spUtils = new SPUtils(AppConstant.GLOBAL_CONTEXT, AppConstant.SP);
-                        String sta = spUtils.getString("Language", "zh");
+                        String sta = spUtils.getString("Language", "en");
                         if ("zh".equals(sta)) {
                             Locale myLocale = new Locale("en");
                             Resources res = getResources();
@@ -295,6 +295,7 @@ public class HomeFragment extends BaseFragment {
                             conf.locale = myLocale;
                             res.updateConfiguration(conf, dm);
                             spUtils.putString("Language", "en");
+                            //getActivity().recreate();
                             Intent intent = new Intent(AppConstant.GLOBAL_CONTEXT, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             getActivity().startActivity(intent);
@@ -307,7 +308,7 @@ public class HomeFragment extends BaseFragment {
                     @Override
                     public void onClick(View v) {
                         SPUtils spUtils = new SPUtils(AppConstant.GLOBAL_CONTEXT, AppConstant.SP);
-                        String sta = spUtils.getString("Language", "zh");
+                        String sta = spUtils.getString("Language", "en");
                         if ("en".equals(sta)) {
                             Locale myLocale = new Locale("zh");
                             Resources res = getResources();
@@ -316,6 +317,7 @@ public class HomeFragment extends BaseFragment {
                             conf.locale = myLocale;
                             res.updateConfiguration(conf, dm);
                             spUtils.putString("Language", "zh");
+                            //getActivity().recreate();
                             Intent intent = new Intent(AppConstant.GLOBAL_CONTEXT, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             getActivity().startActivity(intent);
@@ -336,6 +338,34 @@ public class HomeFragment extends BaseFragment {
         }
 
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        banner.startAutoPlay();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.e("onPause", "onPause");
+        OkGo.getInstance().cancelAll();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.e("onStop", "onStop");
+        banner.stopAutoPlay();
+        // OkGo.getInstance().cancelAll();;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("onDestroy", "onDestroy");
+        // OkGo.getInstance().cancelAll();
     }
 
     public void changeAppLanguage() {

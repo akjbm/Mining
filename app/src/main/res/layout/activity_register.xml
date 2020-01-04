@@ -79,7 +79,7 @@
         <EditText
             android:id="@+id/et_phone"
             android:inputType="number"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16dp"

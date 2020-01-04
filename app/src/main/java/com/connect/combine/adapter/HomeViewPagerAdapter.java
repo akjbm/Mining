@@ -6,11 +6,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-public class HomeViewPagerAdapter extends FragmentStatePagerAdapter {
+public class HomeViewPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> list;
 
     public HomeViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> list) {

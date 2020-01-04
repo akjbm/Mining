@@ -108,7 +108,7 @@ public class ChongZhiActivity extends BasicActivity {
                 break;
             case R.id.tv_save_pic:
                 Bitmap bitmap = BitmapUtils.createBitmap(ivQrcode);
-                BitmapUtils.saveBitmap(bitmap);
+                BitmapUtils.saveBitmap1(bitmap);
                 break;
             case R.id.tv_info:
                 break;

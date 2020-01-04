@@ -1,9 +1,6 @@
 package com.connect.combine;
 
 import android.app.Application;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.util.DisplayMetrics;
 
 import com.connect.base.utils.SPUtils;
 import com.connect.combine.constant.AppConstant;
@@ -13,7 +10,6 @@ import com.lzy.okgo.cookie.store.SPCookieStore;
 import com.lzy.okgo.https.HttpsUtils;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
@@ -62,6 +58,7 @@ public class AppApplication extends Application {
         HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory();
         builder.sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager);
         builder.hostnameVerifier(HttpsUtils.UnSafeHostnameVerifier);
-        init.setOkHttpClient(builder.build());
+        OkHttpClient build = builder.build();
+        init.setOkHttpClient(build);
     }
 }
